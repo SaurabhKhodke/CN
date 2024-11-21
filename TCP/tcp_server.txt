@@ -1,0 +1,35 @@
+import java.io.*;
+import java.net.*;
+
+public class TCPServer {
+    public static void main(String[] args) {
+        try {
+            // Create a server socket listening on port 65433 (changed port)
+            ServerSocket serverSocket = new ServerSocket(65433);
+            System.out.println("Server listening on port 65433...");
+
+            // Accept incoming connection from the client
+            Socket clientSocket = serverSocket.accept();
+            System.out.println("Connected to client: " + clientSocket.getInetAddress());
+
+            // Set up input and output streams
+            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+
+            // Read message from the client
+            String clientMessage = in.readLine();
+            System.out.println("Received from client: " + clientMessage);
+
+            // Send response back to the client with different message
+            String response = "Server says: Message received - " + clientMessage;
+            out.println(response);
+
+            // Close the connection
+            clientSocket.close();
+            serverSocket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
