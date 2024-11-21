@@ -1,0 +1,29 @@
+import java.io.*;
+import java.net.*;
+
+public class TCPClient {
+    public static void main(String[] args) {
+        try {
+            // Create a client socket and connect to the server at localhost on port 65433 (changed port)
+            Socket socket = new Socket("127.0.0.1", 65433);
+
+            // Set up input and output streams
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+            // Send a different message to the server
+            String message = "Hi, Server! I am the client.";
+            out.println(message);
+            System.out.println("Sent to server: " + message);
+
+            // Receive response from the server
+            String serverResponse = in.readLine();
+            System.out.println("Received from server: " + serverResponse);
+
+            // Close the connection
+            socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
