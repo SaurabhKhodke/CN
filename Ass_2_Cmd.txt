@@ -1,0 +1,19 @@
+1. Ping: 
+
+2. Pathping: 
+
+3. ipconfig:
+   
+4. Arp:
+
+5. Netstat:
+
+6. Nbtstat:
+
+7. Nslookup: 
+
+8. Route: 
+
+9. traceroute/tracert:
+
+10. Nmap: 
