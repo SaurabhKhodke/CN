@@ -1,0 +1,22 @@
+import socket
+
+def start_udp_server():
+    # Define server address and port
+    host = '127.0.0.1'  # Localhost
+    port = 65432        # Non-privileged port
+
+    # Create a socket
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    server_socket.bind((host, port))
+    print(f"UDP Server listening on {host}:{port}...")
+
+    while True:
+        # Receive data from the client
+        data, addr = server_socket.recvfrom(1024)  # Buffer size
+        print(f"Received from {addr}: {data.decode()}")
+
+        # Send a response to the client
+        server_socket.sendto(b"Hello, Rohit Sunka", addr)
+
+if _name_ == "_main_":
+    start_udp_server()
